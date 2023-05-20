@@ -46,6 +46,11 @@ resource "aws_instance" "web" {
               #!/bin/bash
               apt-get update
               apt-get install -y apache2
+			  sudo apt-get install docker-ce -y
+				sudo systemctl start docker
+				sudo systemctl enable docker
+				sudo groupadd docker
+				sudo usermod -aG docker ubuntu
               docker run -d -it -p  80:80 rumppel/cicdlab
               EOF
 }
